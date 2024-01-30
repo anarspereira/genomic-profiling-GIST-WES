@@ -1,6 +1,6 @@
-<p align="center">
-  <img src="https://github.com/anarspereira/genomic-profiling-GIST-WES/blob/main/EEUM_logo_EN.png" width="100" />
-  <img src="https://github.com/anarspereira/genomic-profiling-GIST-WES/blob/main/hospital_amor.png" width="100" />
+<p>
+  <img src="https://github.com/anarspereira/genomic-profiling-GIST-WES/blob/main/EEUM_logo_EN.png" width="150" />
+  <img src="https://github.com/anarspereira/genomic-profiling-GIST-WES/blob/main/hospital_amor.png" width="150" />
 </p>
 
 # Genomic profiling of gastrointestinal stromal tumours (GIST) using whole-exome sequencing
