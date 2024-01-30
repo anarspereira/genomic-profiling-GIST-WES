@@ -1,0 +1,116 @@
+---
+title: "R Notebook"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Oncoplot analysis
+
+The aim of this notebook is to show how to draw an **oncoplot** of the results of my dissertation.
+
+**Loading packages:**
+```{r}
+# loading packages
+library(maftools)
+```
+
+**Generating a MAF file:**
+```{r}
+# defining maf file path
+maf_file_path <- "C:/Users/Ana/Documents/GitHub/dissertation/src/oncoplot/oncoplot.maf"
+
+# defining  clinical data file path
+clinical_data_path <- "C:/Users/Ana/Documents/GitHub/dissertation/data/data_exome_and_clinical_MAF/clinical_data_for_oncoplot.csv"
+
+# loading clinical data file into a dataframe
+clinical_data <- read.csv(clinical_data_path, sep = ";")
+head(clinical_data)
+
+# renaming ID column to match MAF file
+colnames(clinical_data)[colnames(clinical_data) == "ID"] <- "Tumor_Sample_Barcode"
+head(clinical_data)
+
+# reading maf file
+maf <- read.maf(maf = maf_file_path, clinicalData = clinical_data)
+```
+
+**Performing an analysis of the MAF file:**
+```{r}
+# summary of my data
+maf
+
+# get sample summary
+getSampleSummary(maf)
+
+# get gene summary
+getGeneSummary(maf)
+
+# get clinical data
+getClinicalData(maf)
+
+# get all fieds
+getFields(maf)
+```
+
+**Changing the colours for the oncoplot:**
+```{r}
+# variant classification colours
+vc_cols = RColorBrewer::brewer.pal(n = 8, name = 'Paired')
+names(vc_cols) = c(
+  'Frame_Shift_Del',
+  'Missense_Mutation',
+  'Nonsense_Mutation',
+  'Multi_Hit',
+  'Frame_Shift_Ins',
+  'In_Frame_Ins',
+  'Splice_Site',
+  'In_Frame_Del'
+)
+
+vc_cols[c('Multi_Hit', 'Frame_Shift_Ins', 'In_Frame_Ins', 'Splice_Site',
+          'In_Frame_Del')] <- c('#000000', '#E3211C', '#FDBF6F', '#984EA3', '#B2DF8A')
+
+
+# annotation colours
+anno_cols <- list(
+  Primary_Tumour_Location = c("Oesophagus" = "#1F78B4", "Small_Intestine" = "#6A3D9A", "Stomach" = "#E3211C", "Rectum" = "#A6CEE3"),
+  Fletcher_Malignancy_Risk = c("High" = "#1F78B4", "Moderate" = "#6A3D9A", "Low" = "#E3211C", "Very_Low" = "#B2DF8A"),
+  Metastasis_Location = c("Liver" = "#1F78B4", "Peritonium" = "#B2DF8A", "NA" = "#F8F8F8"),
+  Status = c("Alive" = "#1F78B4", "Dead" = "#E3211C")
+)
+```
+
+**Defining the list of clinically relevant genes, according to the obtained results of this work:**
+```{r}
+genes = c("KIT", "PDGFRA", "ACAD8", "ANK3", "ATM", "BCL9L", "COL1A1", "EGFR", "FAT3", "GRIN2A", "LEF1", "MGA", "PGR", "PIK3CA")
+```
+
+**Defining the clinical features which will be used for the oncoplot:**
+```{r}
+clinical_features <- c('Primary_Tumour_Location', 'Fletcher_Malignancy_Risk',
+                       'Metastasis_Location', 'Status')
+```
+
+**Generating the oncoplot:**
+```{r, fig.width=10}
+oncoplot(maf = maf,
+         genes = genes,
+         colors = vc_cols,
+         annotationColor = anno_cols,
+         clinicalFeatures = clinical_features,
+         showTumorSampleBarcodes = TRUE,
+         barcode_mar = 5,
+         barcodeSrt = 90,
+         gene_mar = 6,
+         anno_height = 2.5,
+         legend_height = 5,
+         sortByAnnotation = FALSE,
+         sortByMutation = TRUE,
+         fontSize = 0.75,
+         legendFontSize = 1.2,
+         annotationFontSize = 1.2,
+         #titleText = "Oncoplot analysis of the genomic alterations of 19 GIST patients"
+         titleText = NA
+)
+```
