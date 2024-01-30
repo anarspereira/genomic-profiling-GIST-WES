@@ -5,7 +5,7 @@
 
 # Genomic profiling of gastrointestinal stromal tumours (GIST) using whole-exome sequencing
 
-This repository was created to store the data, coding scripts, and results I carried out while developing my dissertation on "Genomic profiling of gastrointestinal stromal tumours (GIST) using whole-exome sequencing", for the Master's degree in Bioinformatics, between February 2023 and January 2024. This work results from a collaboration between the University of Minho, Portugal, and the Barretos Cancer Hospital, Brazil.
+This repository was created to store the coding scripts and results I carried out while developing my dissertation on "Genomic profiling of gastrointestinal stromal tumours (GIST) using whole-exome sequencing", for the Master's degree in Bioinformatics, between February 2023 and January 2024. Sensitive data has been removed from the repository. This work results from a collaboration between the University of Minho, Portugal, and the Barretos Cancer Hospital, Brazil.
 
 
 ## Dissertation abstract
