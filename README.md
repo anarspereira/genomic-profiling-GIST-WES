@@ -1,5 +1,6 @@
 <p>
   <img src="https://github.com/anarspereira/genomic-profiling-GIST-WES/blob/main/logos/EEUM_logo_EN.png" width="152" />
+  <img src="https://github.com/anarspereira/genomic-profiling-GIST-WES/blob/main/logos/ICVS_LOGO_PNG_EN_Vprincipal.png" width="152" \>
   <img src="https://github.com/anarspereira/genomic-profiling-GIST-WES/blob/main/logos/logo_hospital.png" width="215" />
 </p>
 
